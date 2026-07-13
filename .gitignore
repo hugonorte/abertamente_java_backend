@@ -38,3 +38,6 @@ out/
 
 .agents
 *.fuse_hidden*
+
+### Environment Variables ###
+.env
