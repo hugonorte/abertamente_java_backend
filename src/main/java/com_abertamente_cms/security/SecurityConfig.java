@@ -43,8 +43,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(authz -> authz
                 // Permite acesso público a rotas genéricas ou futuras de login
                 .requestMatchers("/api/auth/**").permitAll()
-                // Permite leitura pública de posts e categorias
-                .requestMatchers(HttpMethod.GET, "/api/post/**", "/api/posts/**", "/api/category/**").permitAll()
+                // Permite leitura pública de posts, categorias e arquivos estáticos (uploads)
+                .requestMatchers(HttpMethod.GET, "/api/post/**", "/api/posts/**", "/api/category/**", "/uploads/**").permitAll()
                 // Qualquer outra requisição precisa estar autenticada
                 .anyRequest().authenticated()
             )

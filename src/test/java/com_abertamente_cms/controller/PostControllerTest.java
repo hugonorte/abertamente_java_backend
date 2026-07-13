@@ -58,6 +58,7 @@ class PostControllerTest {
                 "Title",
                 "title",
                 "Content",
+                "/uploads/posts/cover.jpg",
                 PostStatus.DRAFT,
                 UUID.randomUUID(),
                 "Author",
@@ -93,7 +94,7 @@ class PostControllerTest {
 
     @Test
     void testStore() throws Exception {
-        PostRequest request = new PostRequest("Title", "title", "Content", UUID.randomUUID());
+        PostRequest request = new PostRequest("Title", "title", "Content", "/uploads/posts/cover.jpg", UUID.randomUUID());
         PostResponse response = buildResponse();
 
         when(postService.create(any(PostRequest.class))).thenReturn(response);
@@ -108,10 +109,10 @@ class PostControllerTest {
     @Test
     void testUpdate() throws Exception {
         UUID postId = UUID.randomUUID();
-        PostRequest request = new PostRequest("Title Edit", "title-edit", "Content", UUID.randomUUID());
+        PostRequest request = new PostRequest("Title Edit", "title-edit", "Content", "/uploads/posts/cover.jpg", UUID.randomUUID());
         
         CategoryResponse categoryResponse = new CategoryResponse(UUID.randomUUID(), "Tech", "tech", "desc", LocalDateTime.now(), null);
-        PostResponse response = new PostResponse(postId, "Title Edit", "title-edit", "Content", PostStatus.DRAFT, UUID.randomUUID(), "Author", categoryResponse, LocalDateTime.now(), null);
+        PostResponse response = new PostResponse(postId, "Title Edit", "title-edit", "Content", "/uploads/posts/cover.jpg", PostStatus.DRAFT, UUID.randomUUID(), "Author", categoryResponse, LocalDateTime.now(), null);
 
         when(postService.update(eq(postId), any(PostRequest.class))).thenReturn(response);
 
@@ -135,7 +136,7 @@ class PostControllerTest {
     void testChangeStatus() throws Exception {
         UUID postId = UUID.randomUUID();
         CategoryResponse categoryResponse = new CategoryResponse(UUID.randomUUID(), "Tech", "tech", "desc", LocalDateTime.now(), null);
-        PostResponse response = new PostResponse(postId, "Title", "title", "Content", PostStatus.PUBLISHED, UUID.randomUUID(), "Author", categoryResponse, LocalDateTime.now(), null);
+        PostResponse response = new PostResponse(postId, "Title", "title", "Content", "/uploads/posts/cover.jpg", PostStatus.PUBLISHED, UUID.randomUUID(), "Author", categoryResponse, LocalDateTime.now(), null);
 
         when(postService.changeStatus(postId, PostStatus.PUBLISHED)).thenReturn(response);
 

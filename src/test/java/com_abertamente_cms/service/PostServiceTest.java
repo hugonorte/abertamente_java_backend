@@ -71,7 +71,7 @@ class PostServiceTest {
 
     @Test
     void shouldCreatePost() {
-        PostRequest request = new PostRequest("Título Novo", "titulo-novo", "conteudo", category.getId());
+        PostRequest request = new PostRequest("Título Novo", "titulo-novo", "conteudo", "/uploads/posts/cover.jpg", category.getId());
 
         SecurityContextHolder.setContext(securityContext);
         when(securityContext.getAuthentication()).thenReturn(authentication);
@@ -91,7 +91,7 @@ class PostServiceTest {
 
     @Test
     void shouldUpdatePost() {
-        PostRequest request = new PostRequest("Título Edit", "titulo-edit", "conteudo edit", category.getId());
+        PostRequest request = new PostRequest("Título Edit", "titulo-edit", "conteudo edit", "/uploads/posts/cover.jpg", category.getId());
 
         when(postRepository.findById(postId)).thenReturn(Optional.of(post));
         when(postRepository.findBySlug(request.slug())).thenReturn(Optional.empty());

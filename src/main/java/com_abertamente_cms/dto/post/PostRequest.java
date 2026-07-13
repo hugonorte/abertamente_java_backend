@@ -17,6 +17,8 @@ public record PostRequest(
 
         String content,
 
+        String imagePath,
+
         @NotNull(message = "A categoria é obrigatória")
         UUID categoryId
 ) {

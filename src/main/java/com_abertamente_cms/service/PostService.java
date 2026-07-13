@@ -58,6 +58,7 @@ public class PostService {
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário logado não encontrado no banco de dados."));
 
         Post post = new Post(request.title(), request.slug(), request.content(), author, category);
+        post.setImagePath(request.imagePath());
         post = postRepository.save(post);
 
         return PostResponse.fromEntity(post);
@@ -79,6 +80,7 @@ public class PostService {
         post.setTitle(request.title());
         post.setSlug(request.slug());
         post.setContent(request.content());
+        post.setImagePath(request.imagePath());
         post.setCategory(category);
 
         return PostResponse.fromEntity(postRepository.save(post));
