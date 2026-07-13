@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -42,6 +43,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(authz -> authz
                 // Permite acesso público a rotas genéricas ou futuras de login
                 .requestMatchers("/api/auth/**").permitAll()
+                // Permite leitura pública de posts e categorias
+                .requestMatchers(HttpMethod.GET, "/api/post/**", "/api/posts/**", "/api/category/**").permitAll()
                 // Qualquer outra requisição precisa estar autenticada
                 .anyRequest().authenticated()
             )
