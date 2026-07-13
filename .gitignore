@@ -37,3 +37,4 @@ out/
 .vscode/
 
 .agents
+*.fuse_hidden*
